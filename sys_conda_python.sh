@@ -18,7 +18,7 @@ wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
 chmod +x Miniconda3-latest-Linux-x86_64.sh
 
 # Run the installer in batch mode and install to /usr/local/miniconda
-./Miniconda3-latest-Linux-x86_64.sh -b -p -u /usr/local/miniconda
+./Miniconda3-latest-Linux-x86_64.sh -u -b -p /usr/local/miniconda
 
 # Add Miniconda to the PATH for the current script
 export PATH="/usr/local/miniconda/bin:$PATH"
