@@ -8,25 +8,22 @@ wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh || { 
 # Make the installer executable
 chmod +x Miniconda3-latest-Linux-x86_64.sh
 
-# Check if the Miniconda installation directory already exists
-if [ ! -d "/usr/local/miniconda" ]; then
-    # Install Miniconda if the directory does not exist
-    ./Miniconda3-latest-Linux-x86_64.sh -b -p /usr/local/miniconda
-fi
+# Install Miniconda
+./Miniconda3-latest-Linux-x86_64.sh -b -p /usr/local/miniconda
 
-# Add Miniconda to the PATH for the current script
-export PATH="/usr/local/miniconda/bin:$PATH"
+# Initialize Conda for Bash shell
+/usr/local/miniconda/bin/conda init bash
 
-# Also add Miniconda to the PATH persistently for future terminal sessions
-echo 'export PATH="/usr/local/miniconda/bin:$PATH"' >> ~/.bashrc
+# Source .bashrc to apply conda init changes
+source ~/.bashrc
 
-# Verify the installation by checking the conda version
+# Verify the installation
 conda --version
 
 # Update conda
 conda update -n base -c defaults conda -y
 
-# Cleanup the installer
+# Cleanup
 rm -f Miniconda3-latest-Linux-x86_64.sh
 
 echo "Miniconda installation completed successfully."
