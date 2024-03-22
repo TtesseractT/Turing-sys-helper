@@ -32,7 +32,10 @@ source ~/.bashrc
 # Verify the installation
 conda --version
 
+source ~/.bashrc
+
 # Update conda
 conda update -n base -c defaults conda -y
 
 echo "Miniconda installation completed successfully."
+source ~/.bashrc
