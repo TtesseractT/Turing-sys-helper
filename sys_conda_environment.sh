@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Ensure Miniconda's bin directory is in PATH
+export PATH="/usr/local/miniconda/bin:$PATH"
+
 # Function to display error message and exit
 display_error() {
     echo "Error: $1"
