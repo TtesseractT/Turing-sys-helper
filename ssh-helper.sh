@@ -16,7 +16,7 @@ while [[ $# -gt 0 ]]; do
     key="$1"
     case $key in
         -e)
-            email="$2"
+            email="$1"
             shift
             shift
             ;;
