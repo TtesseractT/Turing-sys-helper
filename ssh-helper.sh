@@ -32,7 +32,7 @@ if [ -z "$email" ]; then
 fi
 
 
-ssh-keygen ed25519 -C $email || display_error "Failed to create key"
+ssh-keygen ed25519 -C "$email" || display_error "Failed to create key"
 
 eval "$(ssh-agent -s)"
 
