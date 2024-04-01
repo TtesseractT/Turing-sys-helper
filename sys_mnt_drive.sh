@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Find the 16T partition
-PARTITION=$(sudo lsblk -o NAME,SIZE,TYPE | grep -E '16T|16\\.?\[0-9\]\*T' | grep part | awk '{print $1}' | head -n 1)
+PARTITION=$(sudo lsblk -o NAME,SIZE,TYPE | grep -E '16T|16\.?[0-9]*T' | grep part | awk '{print $1}' | head -n 1)
 
 # Check if the partition was found
 if [ -z "$PARTITION" ]; then
@@ -10,11 +10,15 @@ if [ -z "$PARTITION" ]; then
 fi
 
 # Extract only the partition name without leading symbols
-PARTITION_NAME=$(echo $PARTITION | sed 's/\[^a-zA-Z0-9\]//g')
+PARTITION_NAME=$(echo $PARTITION | sed 's/[^a-zA-Z0-9]//g')
 echo "Partition to mount: /dev/$PARTITION_NAME"
 
-# Create and mount the partition
-sudo mkdir -p /mnt/my16tdrive
+# Create the mount directory if it doesn't exist
+if [ ! -d "/mnt/my16tdrive" ]; then
+    sudo mkdir -p /mnt/my16tdrive
+fi
+
+# Mount the partition
 sudo mount -t ext4 /dev/$PARTITION_NAME /mnt/my16tdrive
 
 # Check if mount was successful
